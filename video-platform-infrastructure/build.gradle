@@ -5,6 +5,7 @@ plugins {
 dependencies {
     implementation "software.amazon.awscdk:core:${cdkVersion}"
     implementation "software.amazon.awscdk:apigatewayv2:${cdkVersion}"
+    implementation "software.amazon.awscdk:apigatewayv2-integrations:${cdkVersion}"
 }
 
 application {

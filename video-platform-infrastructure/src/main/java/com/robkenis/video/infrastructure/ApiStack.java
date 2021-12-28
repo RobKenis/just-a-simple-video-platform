@@ -2,13 +2,18 @@ package com.robkenis.video.infrastructure;
 
 import software.amazon.awscdk.core.Stack;
 import software.amazon.awscdk.core.StackProps;
+import software.amazon.awscdk.services.apigatewayv2.AddRoutesOptions;
 import software.amazon.awscdk.services.apigatewayv2.HttpApi;
+import software.amazon.awscdk.services.apigatewayv2.HttpMethod;
+import software.amazon.awscdk.services.apigatewayv2.integrations.HttpLambdaIntegration;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.logs.LogGroup;
 import software.amazon.awscdk.services.logs.RetentionDays;
 import software.constructs.Construct;
+
+import java.util.List;
 
 public class ApiStack extends Stack {
 
@@ -29,5 +34,13 @@ public class ApiStack extends Stack {
                 .logGroupName("/aws/lambda/" + rooms.getFunctionName())
                 .retention(RetentionDays.ONE_DAY)
                 .build();
+
+        HttpLambdaIntegration roomsIntegration = new HttpLambdaIntegration("RoomsIntegration", rooms);
+
+        httpApi.addRoutes(AddRoutesOptions.builder()
+                .path("/rooms")
+                .methods(List.of(HttpMethod.GET))
+                .integration(roomsIntegration)
+                .build());
     }
 }
