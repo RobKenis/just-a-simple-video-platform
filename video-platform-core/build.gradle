@@ -1,0 +1,3 @@
+plugins {
+    id 'com.robkenis.video.java-common-conventions'
+}

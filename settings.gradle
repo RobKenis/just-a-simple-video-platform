@@ -1,0 +1,2 @@
+rootProject.name = 'just-a-simple-video-platform'
+include('video-platform-core')
