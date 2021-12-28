@@ -1,2 +1,13 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+        id "${quarkusPluginId}" version "${quarkusPluginVersion}"
+    }
+}
+
 rootProject.name = 'just-a-simple-video-platform'
-include('video-platform-core')
+include('video-platform-core', 'video-platform-rooms', 'video-platform-rooms-lambda')

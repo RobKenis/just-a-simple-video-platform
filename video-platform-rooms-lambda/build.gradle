@@ -1,0 +1,22 @@
+plugins {
+    id 'com.robkenis.video.java-application-conventions'
+    id 'io.quarkus'
+}
+
+dependencies {
+    implementation project(':video-platform-rooms')
+
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-amazon-lambda'
+    implementation 'io.quarkus:quarkus-arc'
+
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.0'
+}
+
+quarkusBuild {
+    nativeArgs {
+        containerBuild = true
+        builderImage = "quay.io/quarkus/ubi-quarkus-native-image:21.3.0-java17"
+    }
+}

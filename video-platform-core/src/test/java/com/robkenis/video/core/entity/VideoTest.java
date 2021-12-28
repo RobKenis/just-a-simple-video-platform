@@ -11,4 +11,10 @@ class VideoTest {
         Video video = new Video();
         assertThat(video.getId()).startsWith("video-");
     }
+
+    @Test
+    void newVideoIsInNewState() {
+        Video video = new Video();
+        assertThat(video.getState()).isEqualTo(Video.State.NEW);
+    }
 }
