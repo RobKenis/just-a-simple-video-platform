@@ -46,4 +46,8 @@ Configuration for the native build is found in [this build.gradle](video-platfor
 
 ## Deploying
 
-Everything is deployed using the [Serverless framework](https://www.serverless.com/).
+Everything is deployed using [AWS CDK](https://aws.amazon.com/cdk/).
+
+```shell
+$ cdk deploy
+```

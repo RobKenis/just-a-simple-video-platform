@@ -1,0 +1,12 @@
+plugins {
+    id 'com.robkenis.video.java-application-conventions'
+}
+
+dependencies {
+    implementation "software.amazon.awscdk:core:${cdkVersion}"
+    implementation "software.amazon.awscdk:apigatewayv2:${cdkVersion}"
+}
+
+application {
+    mainClassName = 'com.robkenis.video.infrastructure.Application'
+}
