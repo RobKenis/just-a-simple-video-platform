@@ -2,9 +2,7 @@ package com.robkenis.video.infrastructure;
 
 import software.amazon.awscdk.core.Stack;
 import software.amazon.awscdk.core.StackProps;
-import software.amazon.awscdk.services.apigatewayv2.AddRoutesOptions;
-import software.amazon.awscdk.services.apigatewayv2.HttpApi;
-import software.amazon.awscdk.services.apigatewayv2.HttpMethod;
+import software.amazon.awscdk.services.apigatewayv2.*;
 import software.amazon.awscdk.services.apigatewayv2.integrations.HttpLambdaIntegration;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
@@ -20,7 +18,12 @@ public class ApiStack extends Stack {
     public ApiStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
 
-        HttpApi httpApi = HttpApi.Builder.create(this, id).build();
+        HttpApi httpApi = HttpApi.Builder.create(this, id)
+                .corsPreflight(CorsPreflightOptions.builder()
+                        .allowMethods(List.of(CorsHttpMethod.ANY))
+                        .allowOrigins(List.of("*"))
+                        .build())
+                .build();
 
         Function rooms = Function.Builder.create(this, "video-platform-rooms")
                 .functionName("video-platform-rooms")
