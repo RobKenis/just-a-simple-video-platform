@@ -12,4 +12,5 @@ pluginManagement {
 rootProject.name = 'just-a-simple-video-platform'
 include('video-platform-core', 'video-platform-rooms')
 include('video-platform-rooms-lambda')
+include('video-platform-ui')
 include('video-platform-infrastructure')
